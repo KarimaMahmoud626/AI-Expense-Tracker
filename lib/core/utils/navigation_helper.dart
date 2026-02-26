@@ -1,0 +1,3 @@
+class NavigationHelper {
+  NavigationHelper._();
+}
