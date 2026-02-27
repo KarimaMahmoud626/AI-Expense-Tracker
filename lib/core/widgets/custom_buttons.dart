@@ -37,7 +37,7 @@ class CustomGenralButton extends StatelessWidget {
                   : Text(
                     text!,
                     style: TextStyle(
-                      color: colors.onPrimaryFixedVariant,
+                      color: colors.onPrimary,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
