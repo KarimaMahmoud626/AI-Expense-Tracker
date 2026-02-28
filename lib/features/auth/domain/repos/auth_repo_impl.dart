@@ -11,8 +11,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final AuthRemoteDataSource dataSource;
+  final AuthServices authServices;
 
-  AuthRepoImpl({required this.dataSource});
+  AuthRepoImpl({required this.dataSource, required this.authServices});
   @override
   Future<Either<Failure, UserCredential>> loginWithGoogle() async {
     try {
@@ -44,7 +45,7 @@ class AuthRepoImpl extends AuthRepo {
         stackTrace,
       );
 
-      return Left(AuthServices().firebaseAuthErrorType(e));
+      return Left(authServices.firebaseAuthErrorType(e));
     } on SocketException catch (e, stackTrace) {
       AppLogger.error('Network error during Google sign-in', e, stackTrace);
       return const Left(
