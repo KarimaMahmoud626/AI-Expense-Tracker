@@ -33,11 +33,19 @@ class AuthCubit extends Cubit<AuthState> {
   ///
   /// Emits [AuthLoading] while processing, then either [AuthSuccess]
   /// with user credentials or [AuthError] if authentication fails.
-  Future<void> emailSignIn(String email, String password) async {
+  Future<void> emailSignIn(
+    String email,
+    String password, {
+    String? name,
+  }) async {
     AppLogger.info('Email sign-in requested for: $email');
     emit(AuthLoading());
 
-    final result = await repo.signInwithEmailAndPassword(email, password);
+    final result = await repo.signInwithEmailAndPassword(
+      email,
+      password,
+      name: name,
+    );
 
     result.fold(
       (failure) {

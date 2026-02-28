@@ -21,4 +21,11 @@ class NavigationHelper {
     }
     return Navigator.pushNamed(context, AppRoutes.login);
   }
+
+  static Future<void> toHome(BuildContext context, {bool replace = false}) {
+    if (replace) {
+      return Navigator.pushReplacementNamed(context, AppRoutes.home);
+    }
+    return Navigator.pushNamed(context, AppRoutes.home);
+  }
 }

@@ -1,5 +1,4 @@
 import 'package:ai_expense_tracker/core/widgets/custom_text_field.dart';
-import 'package:ai_expense_tracker/core/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class LoginFormItem extends StatelessWidget {
@@ -33,17 +32,8 @@ class LoginFormItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.onSurface,
-          ),
-          textAlign: TextAlign.left,
-        ),
-        VerticalSpace(1.5),
         CustomTextField(
+          labelText: text,
           keyboardType: keyboardType,
           maxLines: maxLines,
           onSaved: onSaved,

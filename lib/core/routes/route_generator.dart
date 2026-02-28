@@ -1,6 +1,7 @@
 import 'package:ai_expense_tracker/core/routes/app_routes.dart';
 import 'package:ai_expense_tracker/features/auth/presentation/pages/login/login_view.dart';
 import 'package:ai_expense_tracker/features/onboarding/presentation/pages/onboarding_view/onboarding_view.dart';
+import 'package:ai_expense_tracker/features/transactions/presentation/pages/home/home_view.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -15,6 +16,9 @@ class RouteGenerator {
 
       case AppRoutes.login:
         return _buildRoute(LoginView(), settings: settings);
+
+      case AppRoutes.home:
+        return _buildRoute(HomeView(), settings: settings);
 
       default:
         return _errorRoute(settings);

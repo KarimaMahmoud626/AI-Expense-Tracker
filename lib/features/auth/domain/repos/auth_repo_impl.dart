@@ -60,8 +60,9 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, UserCredential>> signInwithEmailAndPassword(
     String email,
-    String password,
-  ) async {
+    String password, {
+    String? name,
+  }) async {
     try {
       final userCred = await dataSource.createWithEmail(email, password);
 
@@ -74,7 +75,7 @@ class AuthRepoImpl extends AuthRepo {
       }
 
       await dataSource.saveUserData(
-        UserModel(name: user.displayName!, email: user.email!, uid: user.uid),
+        UserModel(name: name, email: user.email!, uid: user.uid),
       );
 
       AppLogger.info('Account created succesfully for: $email');
@@ -132,8 +133,9 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, UserCredential>> loginWithEmail(
     String email,
-    String password,
-  ) async {
+    String password, {
+    String? name,
+  }) async {
     try {
       final userCredential = await dataSource.signInWithEmail(email, password);
 
@@ -145,7 +147,7 @@ class AuthRepoImpl extends AuthRepo {
       }
 
       await dataSource.saveUserData(
-        UserModel(name: user.displayName!, email: user.email!, uid: user.uid),
+        UserModel(name: name, email: user.email!, uid: user.uid),
       );
       AppLogger.info('Sign-in successful for existing user: $email');
       return Right(userCredential);
