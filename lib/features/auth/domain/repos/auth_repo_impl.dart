@@ -33,7 +33,12 @@ class AuthRepoImpl extends AuthRepo {
 
       // Save user data to Firestore
       await dataSource.saveUserData(
-        UserModel(email: user.email!, name: user.displayName!, uid: user.uid),
+        UserModel(
+          email: user.email!,
+          name: user.displayName!,
+          uid: user.uid,
+          imageUrl: user.photoURL,
+        ),
       );
 
       AppLogger.info('Google sign-in successful for user: ${user.email}');
@@ -80,7 +85,7 @@ class AuthRepoImpl extends AuthRepo {
 
       AppLogger.info('Account created succesfully for: $email');
       return Right(userCred);
-    } on FirebaseAuthException catch (e, stackTrace) {
+    } on FirebaseAuthException catch (e) {
       AppLogger.warning('Firebase Auth error during email sign-in', e);
 
       switch (e.code) {

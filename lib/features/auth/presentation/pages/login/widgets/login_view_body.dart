@@ -4,6 +4,7 @@ import 'package:ai_expense_tracker/core/widgets/custom_buttons.dart';
 import 'package:ai_expense_tracker/core/widgets/custom_icon_button.dart';
 import 'package:ai_expense_tracker/core/widgets/custom_line.dart';
 import 'package:ai_expense_tracker/core/widgets/space.dart';
+import 'package:ai_expense_tracker/features/auth/data/models/user_model.dart';
 import 'package:ai_expense_tracker/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:ai_expense_tracker/features/auth/presentation/pages/login/widgets/login_form_item.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,16 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
-          NavigationHelper.toMain(context, replace: true);
+          NavigationHelper.toMain(
+            context,
+            replace: true,
+            user: UserModel(
+              uid: state.userCred.user!.uid,
+              name: state.userCred.user!.displayName,
+              email: state.userCred.user!.email!,
+              imageUrl: state.userCred.user!.photoURL,
+            ),
+          );
         }
         if (state is AuthError) {
           ScaffoldMessenger.of(

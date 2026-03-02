@@ -1,6 +1,7 @@
 import 'package:ai_expense_tracker/core/utils/size_config.dart';
 import 'package:ai_expense_tracker/features/ai_caht/presentation/pages/ai_chat_view/ai_chat_view.dart';
 import 'package:ai_expense_tracker/features/analytics/presentation/pages/reports/reports_view.dart';
+import 'package:ai_expense_tracker/features/auth/data/models/user_model.dart';
 import 'package:ai_expense_tracker/features/home/presentation/pages/home_view/home_view.dart';
 import 'package:ai_expense_tracker/features/transactions/presentation/pages/transactions/transactions_view.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,9 @@ import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class NavigationShell extends StatelessWidget {
-  NavigationShell({super.key});
+  NavigationShell({super.key, required this.user});
+
+  final UserModel user;
 
   final PersistentTabController _controller = PersistentTabController(
     initialIndex: 0,
@@ -16,7 +19,7 @@ class NavigationShell extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      HomeView(key: ValueKey('home_view')),
+      HomeView(key: ValueKey('home_view'), user: user),
       TransactionsView(key: ValueKey('transaction_view')),
       ReportsView(key: ValueKey('reports_view')),
       AiChatView(key: ValueKey('aiChat_view')),

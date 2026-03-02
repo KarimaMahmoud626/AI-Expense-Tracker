@@ -1,3 +1,4 @@
+import 'package:ai_expense_tracker/features/auth/data/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_expense_tracker/core/routes/app_routes.dart';
 
@@ -22,18 +23,34 @@ class NavigationHelper {
     return Navigator.pushNamed(context, AppRoutes.login);
   }
 
-  static Future<void> toMain(BuildContext context, {bool replace = false}) {
+  static Future<void> toMain(
+    BuildContext context, {
+    bool replace = false,
+    required UserModel user,
+  }) {
     if (replace) {
-      return Navigator.pushReplacementNamed(context, AppRoutes.main);
+      return Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.main,
+        arguments: user,
+      );
     }
-    return Navigator.pushNamed(context, AppRoutes.main);
+    return Navigator.pushNamed(context, AppRoutes.main, arguments: user);
   }
 
-  static Future<void> toHome(BuildContext context, {bool replace = false}) {
+  static Future<void> toHome(
+    BuildContext context, {
+    bool replace = false,
+    required UserModel user,
+  }) {
     if (replace) {
-      return Navigator.pushReplacementNamed(context, AppRoutes.home);
+      return Navigator.pushReplacementNamed(
+        context,
+        AppRoutes.home,
+        arguments: user,
+      );
     }
-    return Navigator.pushNamed(context, AppRoutes.home);
+    return Navigator.pushNamed(context, AppRoutes.home, arguments: user);
   }
 
   static Future<void> toTransactions(
