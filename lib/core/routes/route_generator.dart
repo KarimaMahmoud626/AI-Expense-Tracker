@@ -1,7 +1,11 @@
+import 'package:ai_expense_tracker/core/navigation/navigation_shell.dart';
 import 'package:ai_expense_tracker/core/routes/app_routes.dart';
+import 'package:ai_expense_tracker/features/ai_caht/presentation/pages/ai_chat_view/ai_chat_view.dart';
+import 'package:ai_expense_tracker/features/analytics/presentation/pages/reports/reports_view.dart';
 import 'package:ai_expense_tracker/features/auth/presentation/pages/login/login_view.dart';
+import 'package:ai_expense_tracker/features/home/presentation/pages/home_view/home_view.dart';
 import 'package:ai_expense_tracker/features/onboarding/presentation/pages/onboarding_view/onboarding_view.dart';
-import 'package:ai_expense_tracker/features/transactions/presentation/pages/home/home_view.dart';
+import 'package:ai_expense_tracker/features/transactions/presentation/pages/transactions/transactions_view.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -17,8 +21,20 @@ class RouteGenerator {
       case AppRoutes.login:
         return _buildRoute(LoginView(), settings: settings);
 
+      case AppRoutes.main:
+        return _buildRoute(NavigationShell(), settings: settings);
+
+      case AppRoutes.aiChat:
+        return _buildRoute(AiChatView(), settings: settings);
+
       case AppRoutes.home:
         return _buildRoute(HomeView(), settings: settings);
+
+      case AppRoutes.transactions:
+        return _buildRoute(TransactionsView(), settings: settings);
+
+      case AppRoutes.reports:
+        return _buildRoute(ReportsView(), settings: settings);
 
       default:
         return _errorRoute(settings);

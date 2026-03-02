@@ -43,6 +43,8 @@ dependencies:
   dartz: ^0.10.1
   logger: ^2.6.2
   flutter_bloc: ^9.1.1
+  font_awesome_icon_class: ^0.0.6
+  persistent_bottom_nav_bar: ^6.2.1
 
 dev_dependencies:
   flutter_test:

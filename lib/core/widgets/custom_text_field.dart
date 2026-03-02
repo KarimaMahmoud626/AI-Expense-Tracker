@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.textInputAction,
     this.labelText,
+    this.obscureText = false,
   });
 
   final TextInputType? keyboardType;
@@ -19,10 +20,11 @@ class CustomTextField extends StatelessWidget {
   final void Function(String?)? onSaved;
   final int? maxLines;
   final IconData? icon;
-  final IconData? suffixIcon;
+  final Widget? suffixIcon;
   final TextEditingController? controller;
   final TextInputAction? textInputAction;
   final String? labelText;
+  final bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +36,11 @@ class CustomTextField extends StatelessWidget {
       onSaved: onSaved,
       maxLines: maxLines,
       textInputAction: textInputAction,
+      obscureText: obscureText!,
       decoration: InputDecoration(
         labelText: labelText,
         prefixIcon: Icon(icon, size: 20, color: colors.onSurfaceVariant),
-        suffixIcon: Icon(suffixIcon, size: 20, color: colors.onSurfaceVariant),
+        suffixIcon: suffixIcon,
         fillColor: colors.surface,
         filled: true,
         border: OutlineInputBorder(

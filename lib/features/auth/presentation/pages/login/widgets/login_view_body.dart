@@ -1,6 +1,7 @@
 import 'package:ai_expense_tracker/core/utils/navigation_helper.dart';
 import 'package:ai_expense_tracker/core/utils/size_config.dart';
 import 'package:ai_expense_tracker/core/widgets/custom_buttons.dart';
+import 'package:ai_expense_tracker/core/widgets/custom_icon_button.dart';
 import 'package:ai_expense_tracker/core/widgets/custom_line.dart';
 import 'package:ai_expense_tracker/core/widgets/space.dart';
 import 'package:ai_expense_tracker/features/auth/presentation/manager/auth_cubit.dart';
@@ -35,7 +36,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
-          NavigationHelper.toHome(context, replace: true);
+          NavigationHelper.toMain(context, replace: true);
         }
         if (state is AuthError) {
           ScaffoldMessenger.of(
@@ -106,7 +107,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             text: 'Password',
                             controller: passwordController,
                             icon: Icons.lock_rounded,
-                            suffixIcon: Icons.visibility_outlined,
+                            suffixIcon: CustomIconButton(
+                              icon: Icons.visibility_outlined,
+                              secondIcon: Icons.visibility_off_outlined,
+                            ),
                             keyboardType: TextInputType.visiblePassword,
                             textInputAction: TextInputAction.done,
                             validator:
